@@ -1,0 +1,23 @@
+{
+  "name": "spatialaddressbook",
+  "version": "1.0.0",
+  "description": "your addressbook on a map, with data attached!",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/globalavocado/spatialaddressbook.git"
+  },
+  "author": "globalavocado",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/globalavocado/spatialaddressbook/issues"
+  },
+  "homepage": "https://github.com/globalavocado/spatialaddressbook#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
