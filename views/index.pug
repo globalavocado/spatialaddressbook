@@ -1,5 +1,45 @@
 extends layout
 
 block content
-  h1= title
-  p #{title} with mapjson route
+	h1 spatialaddressbook
+	p spatialaddressbook with mapjson route
+	#map
+	#legend_title 
+		span#legend_items categories
+	#legend
+		//- we are passing in an object called addresspoint
+		each layer, i in addresspoint
+			input(id=layer.name, type='checkbox', checked)
+			span#leg_items #{layer.name}
+			br
+			
+	script(type='text/javascript').
+		var map = L.map('map').setView([#{lat},#{lng}], 10);
+		L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+			attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+		}).addTo(map);
+		
+		$.getJSON('/maplayers',function(result){
+			$.each(result, function(i, mlayer){
+				$.getJSON('/mapjson/' + mlayer.name, function(data) { addLayer(data, mlayer.name ) });
+			});
+		});
+
+		function addLayer(layer, name) {
+			var address_layer;
+			address_layer = L.geoJson(layer, {
+					pointToLayer: function (feature, latlng) {
+					return L.circleMarker(latlng, layer.style); 
+					}
+				});
+			address_layer.addTo(map);
+			
+			$('#' + name).click(function(e) {
+				
+				if (map.hasLayer(address_layer)) {
+					map.removeLayer(address_layer);
+				} else {
+					map.addLayer(address_layer);
+				}
+			});
+		}
