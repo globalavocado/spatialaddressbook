@@ -3,17 +3,21 @@ html, body {
 	height: 100%;
 	overflow: hidden;
 }
-#map {
-	height: 100%;
-}
+
 body {
 	margin:0;
 	padding:0px;
 	font:14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
+
+#map {
+	height: 100%;
+}
+
 a {
 	color:#00B7FF;
 }
+
 #legend, #legend_title {
 	position:absolute;
 	top:50px;
@@ -29,9 +33,11 @@ a {
 	max-height:80%;
 	overflow:auto;
 }
+
 #legend_title {
 	top:10px;
 }
+
 #legend_items {
 	position:relative;	
 	margin-left:5px;

@@ -8,15 +8,15 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/test', { useNewUrlParser: true }, function (error) {
 	if (error) {
 		console.log(error);
-	}
-});
+		}
+	});
 
 // Mongoose Schema definition: an object that defines the structure of documents, enables definition of types and validators
 var Schema = mongoose.Schema;
 var JsonSchema = new Schema({
 	name: String,
 	type: Schema.Types.Mixed
-});
+	});
 
 // Mongoose Model definition: object giving access to a named collection, allowing query & using schema to validate documents to be saved
 var Json = mongoose.model('Just-a-Name', JsonSchema, 'layer-test');
@@ -29,9 +29,9 @@ router.get('/mapjson/:name', function (req, res) {
 // append the findOne function to Json model
 		Json.findOne({ name: req.params.name },{}, function (err, docs) {
 			res.json(docs);
-		});
-	}
-});
+			});
+		}
+	});
 
 /* GET layers json data. */
 // build a handler to get all layer names
@@ -52,8 +52,8 @@ router.get('/', function(req,res) {
 			"addresspoint" : docs,
 			lat : 45.42,
 			lng : 10.39
+			});
 		});
 	});
-});
 
 module.exports = router;
