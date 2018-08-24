@@ -9,8 +9,8 @@ block content
 	#legend
 		//- we are passing in an object called addresspoint
 		each layer, i in addresspoint
-			input(id=layer.name, type='checkbox', checked)
-			span#legend_items #{layer.name}
+			input(id=layer.category, type='checkbox', checked)
+			span#legend_items #{layer.category}
 			br
 			
 	script(type='text/javascript').
@@ -21,8 +21,8 @@ block content
 		
 		$.getJSON('/maplayers',function(result){
 			$.each(result, function(i, mlayer){
-				$.getJSON('/mapjson/' + mlayer.name, function(data) { 
-					addLayer(data, mlayer.name ) 
+				$.getJSON('/mapjson/' + mlayer.category, function(data) { 
+					addLayer(data, mlayer.category ) 
 					});
 				});
 			});

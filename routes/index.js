@@ -14,7 +14,7 @@ mongoose.connect('mongodb://localhost/test', { useNewUrlParser: true }, function
 // Mongoose Schema definition: an object that defines the structure of documents, enables definition of types and validators
 var Schema = mongoose.Schema;
 var JsonSchema = new Schema({
-	name: String,
+	category: String,
 	type: Schema.Types.Mixed
 	});
 
@@ -23,11 +23,11 @@ var Json = mongoose.model('Just-a-Name', JsonSchema, 'layer-test');
 
 /* GET json data. */
 // first look for layer name (this is one of the top-level properties)
-router.get('/mapjson/:name', function (req, res) {
+router.get('/mapjson/:category', function (req, res) {
 // then confirm that layer name exists
-	if (req.params.name) {
+	if (req.params.category) {
 // append the findOne function to Json model
-		Json.findOne({ name: req.params.name },{}, function (err, docs) {
+		Json.findOne({ category: req.params.category },{}, function (err, docs) {
 			res.json(docs);
 			});
 		}
@@ -37,7 +37,7 @@ router.get('/mapjson/:name', function (req, res) {
 // build a handler to get all layer names
 router.get('/maplayers', function (req, res) {
 // we use find rather than findOne because we are not restricting it to just one record and we only want the name field returned
-	Json.find({},{'name': 1}, function (err, docs) {
+	Json.find({},{'category': 1}, function (err, docs) {
 		res.json(docs);
 	});
 });
