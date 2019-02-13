@@ -7,10 +7,10 @@ block content
 	#legend_title 
 		span#legend_items categories
 	#legend
-		//- we are passing in an object called addresspoint
-		each layer, i in addresspoint
-			input(id=layer.category, type='checkbox', checked)
-			span#legend_items #{layer.category}
+		//- we are passing in an object called categories, which we prepared in index.js
+		each category, i in categories
+			input(id=category, type='checkbox', checked)
+			span#legend_items #{category}
 			br
 			
 	script(type='text/javascript').
@@ -22,7 +22,7 @@ block content
 		$.getJSON('/maplayers',function(result){
 			$.each(result, function(i, mlayer){
 				$.getJSON('/mapjson/' + mlayer.category, function(data) { 
-					addLayer(data, mlayer.category ) 
+					addLayer(data, mlayer.category) 
 					});
 				});
 			});
@@ -34,7 +34,7 @@ block content
 						return L.circleMarker(latlng, layer.style); 
 						},
 					style: function(feature) {
-						switch (feature.properties.style) {
+						switch (feature.style) {
 							case 'Orange': return {
 								fillColor: "#e9bc3b",
 								color: "#ac8613",
@@ -50,10 +50,10 @@ block content
 							}
 						},
 					onEachFeature: function(feature, layer) {
-						layer.bindPopup(feature.properties.name);
+						layer.bindPopup(feature.name);
 						},
 			});
-			
+	
 			map.on('click', function(e){
 			  var latlng = map.mouseEventToLatLng(e.originalEvent);
 			  console.log('hai cliccato sulla mappa a latitudine ' + latlng.lat + ' e longitudine ' + latlng.lng + '!');
