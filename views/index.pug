@@ -14,15 +14,14 @@ block content
 			br
 			
 	script(type='text/javascript').
-		var map = L.map('map').setView([#{lat},#{lng}], 10);
+		var map = L.map('map').setView([#{lat},#{lng}], 7);
 		L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 			attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 			}).addTo(map);
-		
-		$.getJSON('/maplayers',function(result){
-			$.each(result, function(i, mlayer){
-				$.getJSON('/mapjson/' + mlayer.category, function(data) { 
-					addLayer(data, mlayer.category) 
+		$.getJSON('/maplayers',function(result){			
+			$.each(result, function(i, mlayer){			
+				$.getJSON('/mapjson/' + mlayer.properties.category, function(data) { 			
+					addLayer(data, mlayer.properties.category)
 					});
 				});
 			});
@@ -31,17 +30,17 @@ block content
 			var address_layer;
 			address_layer = L.geoJson(layer, {
 					pointToLayer: function(feature, latlng) {
-						return L.circleMarker(latlng, layer.style); 
+						return L.circleMarker(latlng, layer.properties.status); 
 						},
 					style: function(feature) {
-						switch (feature.style) {
-							case 'Orange': return {
+						switch (feature.properties.status) {
+							case 'colleague': return {
 								fillColor: "#e9bc3b",
 								color: "#ac8613",
 								opacity: 1,
 								fillOpacity: 0.8
 								};
-							case 'Blue': return {
+							case 'friend': return {
 								fillColor: "#0099ff",
 								color: "#005f9d",
 								opacity: 1,
@@ -50,10 +49,10 @@ block content
 							}
 						},
 					onEachFeature: function(feature, layer) {
-						layer.bindPopup(feature.name);
+						layer.bindPopup(feature.properties.contact_details);
 						},
 			});
-	
+
 			map.on('click', function(e){
 			  var latlng = map.mouseEventToLatLng(e.originalEvent);
 			  console.log('hai cliccato sulla mappa a latitudine ' + latlng.lat + ' e longitudine ' + latlng.lng + '!');
