@@ -17,14 +17,34 @@ mongoose.connect('mongodb://localhost/test', { useNewUrlParser: true }, function
 
 // Mongoose Schema definition: an object that defines the structure of documents, enables definition of types and validators
 var Schema = mongoose.Schema;
+
+var pointSchema = new mongoose.Schema({
+  type: {
+    type: String,
+    enum: ['Point'],
+    required: true
+  },
+  coordinates: {
+    type: [Number, Number],
+    required: true
+  }
+});
+
 var JsonSchema = new Schema({	
-		category: String,
-		name: String,
+		geometry: {
+			type: pointSchema,
+			required: true
+		},
+		properties:{
+			category: String,
+			contact_details: String,
+			status: String
+		},
 		type: Schema.Types.Mixed
 	});
 
 // Mongoose Model definition: object giving access to a named collection, allowing query & using schema to validate documents to be saved
-var Location = mongoose.model('Just-a-Name', JsonSchema, 'layertestcopy');
+var Location = mongoose.model('Just-a-Name', JsonSchema, 'addresscollection');
 
 /* GET json data. */
 // first look for category, which will become the name of the layer
@@ -33,8 +53,10 @@ router.get('/mapjson/:category', function (req, res) {
 	if (req.params.category) {
 // append the findOne function to JSON model 'Location'
 // QUERY: find only the category (this goes into the route), project only contact_details
-		Location.findOne({category: req.params.category },{}, function (err, docs) {
-			res.json(docs);
+		Location.findOne({'properties.category': req.params.category },{}, function (err, addresspoints) {
+			res.json(addresspoints);
+			// this will appear in the terminal, not the browser:
+			// console.log('addresspoints', addresspoints)
 			});
 		}
 	});
@@ -44,8 +66,9 @@ router.get('/mapjson/:category', function (req, res) {
 router.get('/maplayers', function (req, res) {
 // we use find rather than findOne because we are not restricting it to just one record, we only want the category field returned, we are also suppressing _id
 // QUERY: find everything, project only categories
-	Location.find({},{_id: 0,'category': 1}, function (err, docs) {
-		res.json(docs);
+// docs object: all categories in multiple
+	Location.find({},{_id: 0, 'properties.category': 1}, function (err, addresspoints) {
+		res.json(addresspoints);
 	});
 });
 
@@ -59,8 +82,8 @@ router.get('/', function(req,res) {
 
 		function collectCategory(point) {		
 			//push category from every point into the categories array
-			categories.push(point.category);
-		}
+			categories.push(point.properties.category);
+		};
 		addresspoints.forEach(collectCategory);
 		var uniqueCategories = unique(categories); 
 		res.render('index', {
