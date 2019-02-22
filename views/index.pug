@@ -37,19 +37,21 @@ block content
 							case 'colleague': return {
 								fillColor: "#e9bc3b",
 								color: "#ac8613",
+								radius: 5,
 								opacity: 1,
 								fillOpacity: 0.8
 								};
 							case 'friend': return {
 								fillColor: "#0099ff",
 								color: "#005f9d",
+								radius: 5,
 								opacity: 1,
 								fillOpacity: 0.8
 								};
 							}
 						},
 					onEachFeature: function(feature, layer) {
-						layer.bindPopup(feature.properties.contact_details);
+						layer.bindTooltip(feature.properties.firstname);
 						},
 			});
 

@@ -36,6 +36,7 @@ var JsonSchema = new Schema({
 			required: true
 		},
 		properties:{
+			firstname: String,
 			category: String,
 			contact_details: String,
 			status: String
@@ -52,7 +53,7 @@ router.get('/mapjson/:category', function (req, res) {
 // then confirm that layer name exists
 	if (req.params.category) {
 // append the findOne function to JSON model 'Location'
-// QUERY: find only the category (this goes into the route), project only contact_details
+// QUERY: find only the category (this goes into the route), project everything
 		Location.findOne({'properties.category': req.params.category },{}, function (err, addresspoints) {
 			res.json(addresspoints);
 			// this will appear in the terminal, not the browser:
