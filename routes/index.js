@@ -54,10 +54,8 @@ router.get('/mapjson/:category', function (req, res) {
 	if (req.params.category) {
 // append the findOne function to JSON model 'Location'
 // QUERY: find only the category (this goes into the route), project everything
-		Location.findOne({'properties.category': req.params.category },{}, function (err, addresspoints) {
+		Location.find({'properties.category': req.params.category},{}, function (err, addresspoints) {
 			res.json(addresspoints);
-			// this will appear in the terminal, not the browser:
-			// console.log('addresspoints', addresspoints)
 			});
 		}
 	});
@@ -68,7 +66,7 @@ router.get('/maplayers', function (req, res) {
 // we use find rather than findOne because we are not restricting it to just one record, we only want the category field returned, we are also suppressing _id
 // QUERY: find everything, project only categories
 // docs object: all categories in multiple
-	Location.find({},{_id: 0, 'properties.category': 1}, function (err, addresspoints) {
+	Location.find({},{}, function (err, addresspoints) {
 		res.json(addresspoints);
 	});
 });
