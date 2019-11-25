@@ -57,7 +57,10 @@ block content
 
 			map.on('click', function(e){
 			  var latlng = map.mouseEventToLatLng(e.originalEvent);
-			  console.log('hai cliccato sulla mappa a latitudine ' + latlng.lat + ' e longitudine ' + latlng.lng + '!');
+			  var latitudine = (latlng.lat).toFixed(2);
+			  var longitudine = (latlng.lng).toFixed(2);
+
+			  console.log('hai cliccato sulla mappa a latitudine ' + latitudine + ' e longitudine ' + longitudine + '!');
 			});
 
 			address_layer.addTo(map);
