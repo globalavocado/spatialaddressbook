@@ -66,6 +66,11 @@ block content
                 onEachFeature: function (feature, layer) {
                     layer.bindTooltip(feature.properties.firstname);
                 },
+                onEachFeature: function getPointProperties(feature, layer) {
+                    layer.on('click', function(e) {
+                    console.log(feature.properties)
+                })
+                }
             });
 
             address_layer.addTo(map);
