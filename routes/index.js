@@ -9,8 +9,12 @@ var mongoose = require('mongoose');
 mongoose.set('useFindAndModify', false);
 
 // Mongoose connection to MongoDB
-mongoose.connect('mongodb://localhost/test', { useNewUrlParser: true }, function (error) {
-	if (error) {
+mongoose.connect('mongodb://localhost/test', { 
+		useNewUrlParser: true,
+		useUnifiedTopology: true
+	}, 
+	function (error) {
+		if (error) {
 		console.log(error);
 		}
 	});
