@@ -41,8 +41,10 @@ var JsonSchema = new Schema({
 		},
 		properties:{
 			firstname: String,
+			lastname: String,
 			category: String,
 			contact_details: String,
+			location: String,
 			status: String
 		},
 		type: Schema.Types.Mixed

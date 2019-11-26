@@ -12,7 +12,10 @@ block content
 			input(id=category, type='checkbox', checked)
 			span#legend_items #{category}
 			br
-			
+	#entryform
+		each all_details, i in addresspoints
+			p #{all_details.properties.firstname} #{all_details.properties.lastname}: #{all_details.properties.contact_details}
+
 	script(type='text/javascript').
 		var map = L.map('map').setView([#{lat},#{lng}], 7);
 		L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {

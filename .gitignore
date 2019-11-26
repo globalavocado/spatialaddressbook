@@ -52,3 +52,7 @@ typings/
 .next
 .nuxt
 .vuepress/dist
+
+# webstorm
+
+.idea
