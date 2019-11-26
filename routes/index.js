@@ -5,7 +5,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 
 
-// suppress depracation error
+// suppress deprecation error
 mongoose.set('useFindAndModify', false);
 
 // Mongoose connection to MongoDB
