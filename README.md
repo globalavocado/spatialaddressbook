@@ -56,11 +56,11 @@ then open a browser at http://localhost:3000
 - layer switcher to filter address points by category (colleague or friend)
 - hovering over an address point displays the first name of the addressbook contact as a tooltip
 - clicking anywhere on the map returns the coordinates in the console
-- clicking on an address point writes all attached properties to the console
+- clicking on an address point displays a selection of properties associated with that point
 
 #### to do
-- use ES6
-- build a ReactJS frontend to display retrieved properties onto the page rather than console logging them
 - ability to add address points to the database through the web page
 - ability to edit address points that are in the database
 - ability to delete address points from the database via the web page
+- use ES6
+- build a ReactJS frontend to display retrieved properties below the map
