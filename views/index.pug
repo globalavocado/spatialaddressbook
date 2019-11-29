@@ -12,9 +12,9 @@ block content
             input(id=category, type='checkbox', checked)
             span#legend_items #{category}
             br
-    #entryform
-        each all_details, i in addresspoints
-            p #{all_details.properties.firstname} #{all_details.properties.lastname}: #{all_details.properties.contact_details}
+    p#firstname 
+    p#lastname
+    p#contactdetails
 
     script(type='text/javascript').
         var map = L.map('map').setView([#{lat}, #{lng}], 7);
@@ -66,7 +66,17 @@ block content
                 onEachFeature: function (feature, layer) {
                     layer.bindTooltip(feature.properties.firstname);
                     layer.on('click', function(e) {
-                    console.log(feature.properties)
+
+                    // find the dom element
+                    var firstnameElement = document.getElementById("firstname")
+                    var lastnameElement = document.getElementById("lastname")
+                    var contactdetailsElement = document.getElementById("contactdetails")
+                    
+                    // retrieve and display contents
+                    firstnameElement.textContent = feature.properties.firstname
+                    lastnameElement.textContent = feature.properties.lastname
+                    contactdetailsElement.textContent = feature.properties.contact_details
+
                 })
                 }
             });

@@ -14,10 +14,6 @@ body {
 	height: 70%;
 }
 
-#entryform {
-	color: orange;
-}
-
 a {
 	color:#00B7FF;
 }
@@ -47,4 +43,20 @@ a {
 	position:relative;	
 	margin-left:5px;
 	top:-1px
+}
+
+
+#firstname {
+	display: inline-block;
+	color: orange;
+}
+
+#lastname {
+	display: inline-block;
+	margin-left: 5px;
+	color: green;
+}
+
+#contactdetails {
+	color: blue;
 }
