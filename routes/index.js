@@ -51,7 +51,7 @@ var JsonSchema = new Schema({
 	});
 
 // Mongoose Model definition: object giving access to a named collection, allowing query & using schema to validate documents to be saved
-var Location = mongoose.model('Just-a-Name', JsonSchema, 'addresscollection');
+var Location = mongoose.model('Location', JsonSchema, 'addresscollection_italian');
 
 /* GET json data. */
 // first look for category, which will become the name of the layer
@@ -101,6 +101,15 @@ router.get('/', function(req,res) {
 		});
 	});
 
+/* POST the form. */
+router.post('/submitted', function(req, res) {
+	res.render('submitted', {
+		"firstname": req.body.firstname,
+		"lastname": req.body.lastname,
+		"contactdetails": req.body.contact_details
+	});
+
+});
 
 // iterates through each document, creates key-value pair but 
 // makes sure it only takes category once

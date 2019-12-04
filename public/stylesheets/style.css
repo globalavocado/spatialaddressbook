@@ -14,6 +14,10 @@ body {
 	height: 70%;
 }
 
+.red {
+	color: red;
+}
+
 a {
 	color:#00B7FF;
 }
@@ -45,6 +49,29 @@ a {
 	top:-1px
 }
 
+.wrapper {
+	width: 90%;
+}
+
+#entrypanel {
+	width: 40%;	
+	float: left;
+	padding: 15px;
+}
+
+#entrypanel input, label {
+	margin: 5px;
+}
+ 
+/*#entrypanel input {
+	float: right;
+}*/
+
+#infopanel {
+	width: 40%;
+	float: right;
+	padding: 15px;
+}
 
 #firstname {
 	display: inline-block;
@@ -59,4 +86,9 @@ a {
 
 #contactdetails {
 	color: blue;
+}
+
+.errors-heading {
+	font-weight: bold;
+	color: red;
 }

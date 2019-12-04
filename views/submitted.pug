@@ -1,0 +1,15 @@
+extends layout
+
+block content
+
+	h1 data you have just submitted:
+	strong first name: 
+	|#{firstname}
+	p
+	strong last name: 
+	|#{lastname}
+	p
+	strong contact details: 
+	|#{contactdetails}
+	p
+	a(href='/') go back
