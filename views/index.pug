@@ -58,11 +58,12 @@ block content
             });
         });
 
-        map.on('click', function (e) {
-            var latlng = map.mouseEventToLatLng(e.originalEvent);
-            var latitudine = (latlng.lat).toFixed(2);
-            var longitudine = (latlng.lng).toFixed(2);
-        });
+        // map.on('click', function (e) {
+        //     var latlng = map.mouseEventToLatLng(e.originalEvent);
+        //     var latitudine = (latlng.lat).toFixed(2);
+        //     var longitudine = (latlng.lng).toFixed(2);
+        //     console.log('hai cliccato sulla mappa a latitudine ' + latitudine + ' e longitudine ' + longitudine + '!');
+        // });
 
         function addLayer(layer, name) {
             var address_layer;

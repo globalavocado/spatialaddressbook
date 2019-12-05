@@ -52,15 +52,15 @@ then open a browser at http://localhost:3000
 
 #### done
 
-- retrieve address points from the database and display them on the map
+- retrieve address points from the database and display on map
 - layer switcher to filter address points by category (colleague or friend)
-- hovering over an address point displays the first name of the addressbook contact as a tooltip
-- clicking anywhere on the map returns the coordinates in the console
-- clicking on an address point displays a selection of properties associated with that point
+- hover over an address point to show first name of the addressbook contact as tooltip
+- click anywhere on the map to return map coordinates in the console
+- click on an address point for address point properties
+- add address points to the database through the web page
 
 #### to do
-- ability to add address points to the database through the web page
-- ability to edit address points that are in the database
-- ability to delete address points from the database via the web page
+- add address points by clicking on the map
+- edit address points that are in the database
+- delete address points from the database
 - use ES6
-- build a ReactJS frontend to display retrieved properties below the map
