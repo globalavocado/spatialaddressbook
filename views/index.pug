@@ -23,7 +23,18 @@ block content
         input(id='lastname_input', type='text', name='lastname', placeholder='last name')
         br
         label(for='contact_details') contact
-        input(id='contactdetails_input', type='text', name='contact_details', placeholder='contact details')
+        input(id='contact_details', type='text', name='contact_details', placeholder='contact details')
+        br  
+        label(for='category') category
+        select(id='category', name='category')
+            option(value='friend', selected='') friend
+            option(value='colleague') colleague
+        br
+        label(for='lat') latitude
+        input(id='lat', type='text', name='lat', placeholder='lat')
+        br
+        label(for='lng') longitude
+        input(id='lng', type='text', name='lng', placeholder='lng')
         br
         input(value='add to database', type='submit')
 

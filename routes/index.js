@@ -12,7 +12,7 @@ mongoose.set('useFindAndModify', false);
 mongoose.connect('mongodb://localhost/test', { 
 		useNewUrlParser: true,
 		useUnifiedTopology: true
-	}, 
+	},
 	function (error) {
 		if (error) {
 		console.log(error);
@@ -32,6 +32,8 @@ var pointSchema = new mongoose.Schema({
     type: [Number, Number],
     required: true
   }
+}, {
+    _id : false
 });
 
 var JsonSchema = new Schema({	
@@ -48,7 +50,8 @@ var JsonSchema = new Schema({
 			status: String
 		},
 		type: Schema.Types.Mixed
-	});
+    },
+    { versionKey: false });
 
 // Mongoose Model definition: object giving access to a named collection, allowing query & using schema to validate documents to be saved
 var Location = mongoose.model('Location', JsonSchema, 'addresscollection_italian');
@@ -102,13 +105,42 @@ router.get('/', function(req,res) {
 	});
 
 /* POST the form. */
-router.post('/submitted', function(req, res) {
-	res.render('submitted', {
-		"firstname": req.body.firstname,
-		"lastname": req.body.lastname,
-		"contactdetails": req.body.contact_details
-	});
+router.post("/submitted", function(req, res) {
 
+/* a new Location instance */
+var submittedFirstname = req.body.firstname;
+var submittedLastname = req.body.lastname;
+var submittedContactdetails = req.body.contact_details;
+var submittedCategory = req.body.category;
+var submittedLat = req.body.lat;
+var submittedLng = req.body.lng;
+
+var submittedLocation = new Location({
+    type : "Feature",
+    geometry : {
+        type : "Point",
+        "coordinates" : [ submittedLng, submittedLat ]},
+    "properties": {
+     "firstname": submittedFirstname,
+     "lastname": submittedLastname,
+     "contact_details": submittedContactdetails,
+     "category": submittedCategory
+        }
+    });
+
+// add this new location to the database
+submittedLocation.save(function (err, addresspoints) {
+      if (err) return console.error(err);
+    });
+
+    // send everything to the submission page
+    res.render('submitted', {
+        "firstname": submittedFirstname,
+        "lastname": submittedLastname,
+        "category": submittedCategory,
+        "contactdetails": submittedContactdetails,
+        "coordinates": (submittedLat + ' , ' + submittedLng)
+    });
 });
 
 // iterates through each document, creates key-value pair but 

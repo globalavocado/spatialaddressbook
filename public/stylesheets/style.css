@@ -75,6 +75,7 @@ a {
 
 #firstname {
 	display: inline-block;
+	margin-left: 5px;
 	color: orange;
 }
 
@@ -85,7 +86,18 @@ a {
 }
 
 #contactdetails {
+	margin-left: 5px;
 	color: blue;
+}
+
+#coordinates {
+	margin-left: 5px;
+	color: purple;
+}
+
+#category {
+	margin-left: 5px;
+	color: red;
 }
 
 .errors-heading {
