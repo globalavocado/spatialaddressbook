@@ -16,6 +16,11 @@ block content
     #entrypanel
       h2 add data
       form(method='post' action='/submitted')
+        label(for='category') category
+        select(id='category', name='category')
+            option(value='friend', selected='') friend
+            option(value='colleague') colleague
+        br
         label(for='firstname') first name
         input(id='firstname_input', type='text', name='firstname', placeholder='first name')
         br
@@ -24,11 +29,6 @@ block content
         br
         label(for='contact_details') contact
         input(id='contact_details', type='text', name='contact_details', placeholder='contact details')
-        br  
-        label(for='category') category
-        select(id='category', name='category')
-            option(value='friend', selected='') friend
-            option(value='colleague') colleague
         br
         label(for='lat') latitude
         input(id='lat', type='text', name='lat', placeholder='lat')
@@ -58,12 +58,49 @@ block content
             });
         });
 
-        // map.on('click', function (e) {
-        //     var latlng = map.mouseEventToLatLng(e.originalEvent);
-        //     var latitudine = (latlng.lat).toFixed(2);
-        //     var longitudine = (latlng.lng).toFixed(2);
-        //     console.log('hai cliccato sulla mappa a latitudine ' + latitudine + ' e longitudine ' + longitudine + '!');
-        // });
+        map.on('click', onMapClick);
+            var addedMarkers = [];
+            function onMapClick(e) {
+
+                // data structure of feature including click coordinates
+                var clickPointFeature = {
+                    type: "Feature",
+                    geometry: {
+                        type: "Point",
+                        "coordinates": [e.latlng.lat, e.latlng.lng]
+                    },
+                    "properties": {},
+                }
+
+                if (addedMarkers.length > 0) {
+                    map.removeLayer(addedMarkers.pop());
+                }
+                var marker;
+
+                L.geoJson(clickPointFeature, {
+                    pointToLayer: function (feature, latlng) {
+                        marker = L.marker(e.latlng, {
+                            title: "Resource Location",
+                            alt: "Resource Location",
+                // the marker is also draggable
+                            draggable: true,
+                        });
+                        addedMarkers.push(marker);
+
+                        return marker;
+                    }
+
+                }).addTo(map);
+
+                    console.log(clickPointFeature);
+
+            // latlng = map.mouseEventToLatLng(e.originalEvent);
+            // new L.CircleMarker([e.latlng.lat, e.latlng.lng]).addTo(map);
+            // latitudine = (latlng.lat).toFixed(4);
+            // longitudine = (latlng.lng).toFixed(4);
+            // console.log(latitudine);
+            // console.log('hai cliccato sulla mappa a latitudine ' + latitudine + ' e longitudine ' + longitudine + '!');
+        };
 
         function addLayer(layer, name) {
             var address_layer;
