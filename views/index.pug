@@ -2,7 +2,7 @@ extends layout
 
 block content
     h1 spatialaddressbook
-    p spatialaddressbook with mapjson route
+    p click on the map to add a point
     #map
     #legend_title
         span#legend_items categories
@@ -21,20 +21,20 @@ block content
             option(value='friend', selected='') friend
             option(value='colleague') colleague
         br
-        label(for='firstname') first name
+        label(for='firstname_input') first name
         input(id='firstname_input', type='text', name='firstname', placeholder='first name')
         br
-        label(for='lastname') last name
+        label(for='lastname_input') last name
         input(id='lastname_input', type='text', name='lastname', placeholder='last name')
         br
-        label(for='contact_details') contact
-        input(id='contact_details', type='text', name='contact_details', placeholder='contact details')
+        label(for='contact_details_input') contact
+        input(id='contact_details_input', type='text', name='contact_details', placeholder='contact details')
         br
-        label(for='lat') latitude
-        input(id='lat', type='text', name='lat', placeholder='lat')
+        label(for='lat_input') latitude
+        input(id='lat_input', type='text', name='lat', placeholder='please click the map')
         br
-        label(for='lng') longitude
-        input(id='lng', type='text', name='lng', placeholder='lng')
+        label(for='lng_input') longitude
+        input(id='lng_input', type='text', name='lng', placeholder='please click the map')
         br
         input(value='add to database', type='submit')
 
@@ -58,49 +58,47 @@ block content
             });
         });
 
+        // clicking on the map adds a marker
         map.on('click', onMapClick);
             var addedMarkers = [];
             function onMapClick(e) {
 
-                // data structure of feature including click coordinates
+                var submittedLat = (e.latlng.lat).toFixed(5);
+                var submittedLng = (e.latlng.lng).toFixed(5);
+
+                document.getElementById('lat_input').value = submittedLat;
+                document.getElementById('lng_input').value = submittedLng;
+
+                // data structure of the new feature with retrieved click coordinates
                 var clickPointFeature = {
                     type: "Feature",
                     geometry: {
                         type: "Point",
-                        "coordinates": [e.latlng.lat, e.latlng.lng]
+                        "coordinates": [submittedLat, submittedLng]
                     },
                     "properties": {},
                 }
 
+                // if the array contains more than one marker, remove the previous one
                 if (addedMarkers.length > 0) {
                     map.removeLayer(addedMarkers.pop());
                 }
-                var marker;
+                var addressMarker;
 
+                // add the marker to the addedMarkers array
                 L.geoJson(clickPointFeature, {
                     pointToLayer: function (feature, latlng) {
-                        marker = L.marker(e.latlng, {
-                            title: "Resource Location",
-                            alt: "Resource Location",
-                // the marker is also draggable
-                            draggable: true,
-                        });
-                        addedMarkers.push(marker);
+                        addressMarker = L.circleMarker(e.latlng);
+                        addedMarkers.push(addressMarker);
 
-                        return marker;
+                        return addressMarker;
                     }
 
                 }).addTo(map);
 
-                    console.log(clickPointFeature);
+                    // console.log(clickPointFeature);
 
-            // latlng = map.mouseEventToLatLng(e.originalEvent);
-            // new L.CircleMarker([e.latlng.lat, e.latlng.lng]).addTo(map);
-            // latitudine = (latlng.lat).toFixed(4);
-            // longitudine = (latlng.lng).toFixed(4);
-            // console.log(latitudine);
-            // console.log('hai cliccato sulla mappa a latitudine ' + latitudine + ' e longitudine ' + longitudine + '!');
-        };
+            };
 
         function addLayer(layer, name) {
             var address_layer;
