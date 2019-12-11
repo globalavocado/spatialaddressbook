@@ -15,6 +15,10 @@ block content
 
     #entrypanel
       h2 add data
+        br
+        label.switch
+            input(id='toggleButton', type='checkbox')
+            span.slider.round
       form(method='post' action='/submitted')
         label(for='category') category
         select(id='category', name='category')
@@ -36,7 +40,7 @@ block content
         label(for='lng_input') longitude
         input(id='lng_input', type='text', name='lng', placeholder='please click the map')
         br
-        input(value='add to database', type='submit')
+        input(value='add to database', type='submit', name='add points')
 
     #infopanel
         h2 details
@@ -59,10 +63,11 @@ block content
         });
 
         // clicking on the map adds a marker
-        map.on('click', onMapClick);
+        function clickToAddMarker() {
+            addMarker = map.on('click', onMapClick);
             var addedMarkers = [];
-            function onMapClick(e) {
 
+            function onMapClick(e) {
                 var submittedLat = (e.latlng.lat).toFixed(5);
                 var submittedLng = (e.latlng.lng).toFixed(5);
 
@@ -98,6 +103,7 @@ block content
 
                     // console.log(clickPointFeature);
 
+                }
             };
 
         function addLayer(layer, name) {
@@ -153,4 +159,16 @@ block content
                     map.addLayer(address_layer);
                 }
             });
+
+            // getting the toggle button to work
+            var button = document.getElementById('toggleButton').addEventListener("click", toggleAddMarkers);
+
+            function toggleAddMarkers() {
+                if (document.getElementById('toggleButton').checked) {
+                    clickToAddMarker();
+                } else {
+                    location.reload();
+                }
+            }
+
         }
