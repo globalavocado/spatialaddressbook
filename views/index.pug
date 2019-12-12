@@ -26,7 +26,7 @@ block content
             option(value='colleague') colleague
         br
         label(for='firstname_input') first name
-        input(id='firstname_input', type='text', name='firstname', placeholder='first name')
+        input(id='firstname_input', type='text', name='firstname', placeholder='first name' required)
         br
         label(for='lastname_input') last name
         input(id='lastname_input', type='text', name='lastname', placeholder='last name')
@@ -35,10 +35,10 @@ block content
         input(id='contact_details_input', type='text', name='contact_details', placeholder='contact details')
         br
         label(for='lat_input') latitude
-        input(id='lat_input', type='text', name='lat', placeholder='please click the map')
+        input(id='lat_input', type='text', name='lat', placeholder='please click the map' required)
         br
         label(for='lng_input') longitude
-        input(id='lng_input', type='text', name='lng', placeholder='please click the map')
+        input(id='lng_input', type='text', name='lng', placeholder='please click the map' required)
         br
         input(value='add to database', type='submit', name='add points')
 

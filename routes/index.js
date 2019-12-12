@@ -42,7 +42,10 @@ var JsonSchema = new Schema({
 			required: true
 		},
 		properties:{
-			firstname: String,
+			firstname: {
+				type: String,
+				required: true
+			},
 			lastname: String,
 			category: String,
 			contact_details: String,
