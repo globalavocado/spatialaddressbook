@@ -7,15 +7,15 @@ html, body {
 body {
 	margin:0;
 	padding:0px;
-	font:14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	font:16px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.wrapper {
+	height: 90%;
 }
 
 #map {
 	height: 70%;
-}
-
-.red {
-	color: red;
 }
 
 a {
@@ -49,23 +49,72 @@ a {
 	top:-1px
 }
 
-.wrapper {
-	width: 90%;
-}
-
 #entrypanel {
-	width: 40%;	
+	width: 50%;
 	float: left;
 	padding: 15px;
 }
 
-#entrypanel input, label {
-	margin: 5px;
+/*start responsive form*/
+
+* {
+	box-sizing: border-box;
 }
- 
-/*#entrypanel input {
-	float: right;
-}*/
+
+#container {
+	border-radius: 5px;
+	background-color: #eaeff9;
+	padding: 5px;
+}
+
+#container input[type=text], select, textarea {
+	width: 100%;
+	padding: 2px;
+	border-radius: 4px;
+	resize: vertical;
+	outline:0;
+}
+
+#container input[type=text]:focus {
+	background-color: #1e90ff;
+}
+
+#container label {
+	padding: 2px 0;
+	display: inline-block;
+}
+
+#container input[type=submit]:hover {
+	background-color: #45a049;
+}
+
+#container .col-25 {
+	float: left;
+	width: 25%;
+	margin-top: 6px;
+}
+
+#container .col-75 {
+	float: left;
+	width: 75%;
+	margin-top: 6px;
+}
+
+/* clear floats after the columns */
+#container .row:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+/* screen is less than 600px wide: make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+	.col-25, .col-75, input[type=submit] {
+		width: 100%;
+		margin-top: 0;
+	}
+}
+/*responsive form end*/
 
 #infopanel {
 	width: 40%;
@@ -95,14 +144,28 @@ a {
 	color: purple;
 }
 
-#category {
-	margin-left: 5px;
-	color: red;
-}
-
 .errors-heading {
 	font-weight: bold;
 	color: red;
+}
+
+.bluebutton {
+	background-color: #2196F3;
+	border: none;
+	float: right;
+	color: white;
+	padding: 6px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 12px;
+	margin: 4px;
+	cursor: pointer;
+	border-radius: 4px;
+}
+
+.bluebutton:focus {
+	outline:0;
 }
 
 .switch {
@@ -110,15 +173,16 @@ a {
 	display: inline-block;
 	width: 30px;
 	height: 16px;
+	margin-left: 10px;
 }
-/* Hide default HTML checkbox */
+/* hide default HTML checkbox */
 .switch input {
 	opacity: 0;
 	width: 0;
 	height: 0;
 }
 
-/* The slider */
+/* slider */
 .slider {
 	position: absolute;
 	cursor: pointer;
@@ -134,7 +198,7 @@ a {
 .slider:before {
 	position: absolute;
 	content: "";
-	height: 11px;
+	height: 12px;
 	width: 11px;
 	left: 2px;
 	bottom: 2px;

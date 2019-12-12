@@ -2,51 +2,65 @@ extends layout
 
 block content
     h1 spatialaddressbook
-    p click on the map to add a point
-    #map
-    #legend_title
-        span#legend_items categories
-    #legend
-        //- we are passing in an object called categories, which we prepared in index.js
-        each category, i in categories
-            input(id=category, type='checkbox', checked)
-            span#legend_items #{category}
-            br
+    //p click on the map to add a point
+    .wrapper
+        #map
+        #legend_title
+            span#legend_items categories
+        #legend
+            //- we are passing in an object called categories, which we prepared in index.js
+            each category, i in categories
+                input(id=category, type='checkbox', checked)
+                span#legend_items #{category}
+                br
 
-    #entrypanel
-      h2 add data
-        br
-        label.switch
-            input(id='toggleButton', type='checkbox')
-            span.slider.round
-      form(method='post' action='/submitted')
-        label(for='category') category
-        select(id='category', name='category')
-            option(value='friend', selected='') friend
-            option(value='colleague') colleague
-        br
-        label(for='firstname_input') first name
-        input(id='firstname_input', type='text', name='firstname', placeholder='first name' required)
-        br
-        label(for='lastname_input') last name
-        input(id='lastname_input', type='text', name='lastname', placeholder='last name')
-        br
-        label(for='contact_details_input') contact
-        input(id='contact_details_input', type='text', name='contact_details', placeholder='contact details')
-        br
-        label(for='lat_input') latitude
-        input(id='lat_input', type='text', name='lat', placeholder='please click the map' required)
-        br
-        label(for='lng_input') longitude
-        input(id='lng_input', type='text', name='lng', placeholder='please click the map' required)
-        br
-        input(value='add to database', type='submit', name='add points')
+        #entrypanel
+          p add data
+            label.switch
+              input(id='toggleButton', type='checkbox')
+              span.slider.round
+          #container
+              form(method='post' action='/submitted')
+                .row
+                  .col-25
+                      label(for='category') category
+                  .col-75
+                      select(id='category', name='category')
+                          option(value='friend', selected='') friend
+                          option(value='colleague') colleague
+                .row
+                  .col-25
+                    label(for='firstname_input') first name
+                  .col-75
+                    input(id='firstname_input', type='text', name='firstname', placeholder='first name' required)
+                .row
+                  .col-25
+                    label(for='lastname_input') last name
+                  .col-75
+                    input(id='lastname_input', type='text', name='lastname', placeholder='last name' required)
+                .row
+                  .col-25
+                    label(for='contact_details_input') contact
+                  .col-75
+                    input(id='contact_details_input', type='text', name='contact_details', placeholder='contact details')
+                .row
+                  .col-25
+                    label latitude
+                  .col-75
+                    input(readonly id='lat_input', type='text', name='lat', placeholder='please click the map first' required)
+                .row
+                  .col-25
+                    label longitude
+                  .col-75
+                    input(readonly id='lng_input', type='text', name='lng', placeholder='please click the map first' required)
+                .row
+                  input(class='bluebutton', value='add to database', type='submit', name='add points')
 
-    #infopanel
-        h2 details
-        #firstname
-        #lastname
-        #contactdetails
+        #infopanel
+            h2 details
+            #firstname
+            #lastname
+            #contactdetails
 
 
     script(type='text/javascript').
