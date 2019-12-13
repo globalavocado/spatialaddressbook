@@ -58,9 +58,9 @@ block content
 
         .infopanel
             h2 details
-            .firstname
-            .lastname
-            .contactdetails
+            #firstname
+            #lastname
+            #contactdetails
 
 
     script(type='text/javascript').
@@ -151,9 +151,9 @@ block content
                     layer.on('click', function(e) {
 
                     // find the dom element
-                    var firstnameElement = document.getElementsByClassName("firstname")
-                    var lastnameElement = document.getElementsByClassName("lastname")
-                    var contactdetailsElement = document.getElementsByClassName("contactdetails")
+                    var firstnameElement = document.getElementById("firstname")
+                    var lastnameElement = document.getElementById("lastname")
+                    var contactdetailsElement = document.getElementById("contactdetails")
                     
                     // retrieve and display contents
                     firstnameElement.textContent = feature.properties.firstname

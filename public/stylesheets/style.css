@@ -115,19 +115,19 @@ body {
 	margin: 15px;
 }
 
-.firstname {
+#firstname {
 	display: inline-block;
 	margin-left: 5px;
 	color: orange;
 }
 
-.lastname {
+#lastname {
 	display: inline-block;
 	margin-left: 5px;
 	color: green;
 }
 
-.contactdetails {
+#contactdetails {
 	margin-left: 5px;
 	color: blue;
 }
