@@ -1,13 +1,13 @@
 html, body {
-	padding: 10px;
+	margin: 10px;
 	height: 100%;
 	overflow: hidden;
 }
 
 body {
 	margin:0;
-	padding:0px;
-	font:16px "Lucida Grande", Helvetica, Arial, sans-serif;
+	padding:0;
+	font:12px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 .wrapper {
@@ -18,18 +18,16 @@ body {
 	height: 70%;
 }
 
-a {
-	color:#00B7FF;
-}
-
-#legend, #legend_title {
+.legend, .legend_title {
 	position:absolute;
 	top:50px;
 	right:10px;
 	width:150px;
 	padding:10px;
+	background:#000;
 	background:rgba(34,34,34,1);
-	color:#999;
+ 	color: #e3e3e3;
+	color: rgba(238, 238, 238,1);
 	font-family: Arial, Helvetica, sans-serif;
 	font-size:12px;
 	line-height:18px;
@@ -39,7 +37,7 @@ a {
 	z-index:999;
 }
 
-#legend_title {
+.legend_title {
 	top:10px;
 }
 
@@ -49,59 +47,54 @@ a {
 	top:-1px
 }
 
-#entrypanel {
+.entrypanel {
 	width: 50%;
 	float: left;
-	padding: 15px;
+	margin: 15px;
 }
 
-/*start responsive form*/
+/*start RESPRONSIVE FORM*/
 
-* {
-	box-sizing: border-box;
-}
-
-#container {
+.container {
 	border-radius: 5px;
 	background-color: #eaeff9;
 	padding: 5px;
 }
 
-#container input[type=text], select, textarea {
-	width: 100%;
-	padding: 2px;
+.container input[type=text], select, textarea {
+	width: 95%;
+	margin: 2px;
 	border-radius: 4px;
 	resize: vertical;
-	outline:0;
 }
 
-#container input[type=text]:focus {
-	background-color: #1e90ff;
+.container input[type=text]:focus {
+	background-color: #75bafd;
 }
 
-#container label {
+.container label {
 	padding: 2px 0;
 	display: inline-block;
 }
 
-#container input[type=submit]:hover {
+.container input[type=submit]:hover {
 	background-color: #45a049;
 }
 
-#container .col-25 {
+.container .col-25 {
 	float: left;
 	width: 25%;
 	margin-top: 6px;
 }
 
-#container .col-75 {
+.container .col-75 {
 	float: left;
 	width: 75%;
 	margin-top: 6px;
 }
 
 /* clear floats after the columns */
-#container .row:after {
+.container .row:after {
 	content: "";
 	display: table;
 	clear: both;
@@ -114,27 +107,27 @@ a {
 		margin-top: 0;
 	}
 }
-/*responsive form end*/
+/*RESPRONSIVE FORM end*/
 
-#infopanel {
+.infopanel {
 	width: 40%;
 	float: right;
-	padding: 15px;
+	margin: 15px;
 }
 
-#firstname {
+.firstname {
 	display: inline-block;
 	margin-left: 5px;
 	color: orange;
 }
 
-#lastname {
+.lastname {
 	display: inline-block;
 	margin-left: 5px;
 	color: green;
 }
 
-#contactdetails {
+.contactdetails {
 	margin-left: 5px;
 	color: blue;
 }
@@ -157,7 +150,6 @@ a {
 	padding: 6px;
 	text-align: center;
 	text-decoration: none;
-	display: inline-block;
 	font-size: 12px;
 	margin: 4px;
 	cursor: pointer;
@@ -165,8 +157,10 @@ a {
 }
 
 .bluebutton:focus {
-	outline:0;
+	outline: grey dotted thin;
 }
+
+/* start TOGGLE SWITCH */
 
 .switch {
 	position: relative;
@@ -175,14 +169,15 @@ a {
 	height: 16px;
 	margin-left: 10px;
 }
+
 /* hide default HTML checkbox */
+
 .switch input {
 	opacity: 0;
 	width: 0;
 	height: 0;
 }
 
-/* slider */
 .slider {
 	position: absolute;
 	cursor: pointer;
@@ -192,6 +187,8 @@ a {
 	bottom: 0;
 	background-color: #ccc;
 	-webkit-transition: .4s;
+	-moz-transition: .4s;
+	-o-transition: .4s;
 	transition: .4s;
 }
 
@@ -204,6 +201,8 @@ a {
 	bottom: 2px;
 	background-color: white;
 	-webkit-transition: .4s;
+	-moz-transition: .4s;
+	-o-transition: .4s;
 	transition: .4s;
 }
 
@@ -217,14 +216,18 @@ input:focus + .slider {
 
 input:checked + .slider:before {
 	-webkit-transform: translateX(13px);
+	-moz-transform: translateX(13px);
 	-ms-transform: translateX(13px);
+	-o-transform: translateX(13px);
 	transform: translateX(13px);
 }
 
-.slider.round {
+.rounded {
 	border-radius: 34px;
 }
 
-.slider.round:before {
+.rounded:before {
 	border-radius: 50%;
 }
+
+/* TOGGLE SWITCH end */

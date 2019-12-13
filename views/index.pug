@@ -5,21 +5,21 @@ block content
     //p click on the map to add a point
     .wrapper
         #map
-        #legend_title
+        .legend_title
             span#legend_items categories
-        #legend
+        .legend
             //- we are passing in an object called categories, which we prepared in index.js
             each category, i in categories
                 input(id=category, type='checkbox', checked)
                 span#legend_items #{category}
                 br
 
-        #entrypanel
+        .entrypanel
           p add data
             label.switch
               input(id='toggleButton', type='checkbox')
-              span.slider.round
-          #container
+              span.slider.rounded
+          .container
               form(method='post' action='/submitted')
                 .row
                   .col-25
@@ -56,11 +56,11 @@ block content
                 .row
                   input(class='bluebutton', value='add to database', type='submit', name='add points')
 
-        #infopanel
+        .infopanel
             h2 details
-            #firstname
-            #lastname
-            #contactdetails
+            .firstname
+            .lastname
+            .contactdetails
 
 
     script(type='text/javascript').
@@ -151,9 +151,9 @@ block content
                     layer.on('click', function(e) {
 
                     // find the dom element
-                    var firstnameElement = document.getElementById("firstname")
-                    var lastnameElement = document.getElementById("lastname")
-                    var contactdetailsElement = document.getElementById("contactdetails")
+                    var firstnameElement = document.getElementsByClassName("firstname")
+                    var lastnameElement = document.getElementsByClassName("lastname")
+                    var contactdetailsElement = document.getElementsByClassName("contactdetails")
                     
                     // retrieve and display contents
                     firstnameElement.textContent = feature.properties.firstname
