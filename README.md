@@ -13,7 +13,7 @@ Your address book on a map! This web app lets a user visualise the locations of 
 
 ## Installation
 
-### Prerequesites
+### Pre-requisites
 
 You need to connect to a database called *test* that contains a MongoDB collection *addresscollection*, with some sample data documents. These follow the [GeoJSON](https://geojson.org/ "GeoJSON") standard and as a minimum, need to contain the following properties:
 - firstname
@@ -39,7 +39,7 @@ open another terminal tab to start MongoDB in any directory:
   ... $ mongod
 ~~~
 
-return to your first tab and start the node server:
+go back to your spatialaddressbook directory and start the node server:
 
 ~~~
   ... $ npm start
@@ -57,10 +57,11 @@ then open a browser at http://localhost:3000
 - hover over an address point to show first name of the addressbook contact as tooltip
 - click anywhere on the map to return map coordinates in the console
 - click on an address point for address point properties
-- add address points to the database through the web page
+- add address points to the database through a web form
+- retrieve coordinates for data entry by clicking on the map
 
 #### to do
-- add address points by clicking on the map
-- edit address points that are in the database
-- delete address points from the database
 - use ES6
+- edit address points
+- delete address points from the database
+- import data from Thunderbird export file
