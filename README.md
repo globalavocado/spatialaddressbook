@@ -39,10 +39,10 @@ open another terminal tab to start MongoDB in any directory:
   ... $ mongod
 ~~~
 
-go back to your spatialaddressbook directory and start the node server:
+go back to your spatialaddressbook directory and start the node server in development mode:
 
 ~~~
-  ... $ npm start
+  ... $ npm run dev
 ~~~
 
 then open a browser at http://localhost:3000
