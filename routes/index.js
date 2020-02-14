@@ -8,17 +8,6 @@ var mongoose = require('mongoose');
 // suppress deprecation error
 mongoose.set('useFindAndModify', false);
 
-// Mongoose connection to MongoDB
-mongoose.connect('mongodb://localhost/test', { 
-		useNewUrlParser: true,
-		useUnifiedTopology: true
-	},
-	function (error) {
-		if (error) {
-		console.log(error);
-		}
-	});
-
 // Mongoose Schema definition: an object that defines the structure of documents, enables definition of types and validators
 var Schema = mongoose.Schema;
 

@@ -3,11 +3,26 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mongoose = require('mongoose');
 
 var indexRouter = require('./routes/index');
 // var usersRouter = require('./routes/users');
 
 var app = express();
+
+// Mongoose connection to MongoDB
+mongoose.connect('mongodb://localhost/test',
+	{
+		useNewUrlParser: true,
+		useUnifiedTopology: true 
+	},
+	function (err) {
+		if (err) return console.log(err)
+		db = mongoose.connection;
+		app.listen(3000, () => {
+			console.log('listening on 3000')
+		})
+})
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
